@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ "x$1" = "x-d" -o "x$1" = "x--debug" ]; then
+	shift 1;
+	JVM_OPTIONS="-agentlib:jdwp=transport=dt_socket,server=n,suspend=n,address=8000";
+fi
+cd target/dist
+java ${JVM_OPTIONS} -jar CMigrate.jar $*
+cd ../..
